@@ -3,7 +3,6 @@
 var userPoints = 0;
 //////GLOBAL VARIABLE THAT WILL STAY OUT OF THE FUNCTIONS
 
-
 console.log('Josh\'s about me guessing game');
 
 alert('Welcome to my guessing game!');
@@ -12,35 +11,72 @@ var user = prompt('What is your name?');
 alert('Hi ' + user + '! I am so glad you want to play my game. Let\'s see how much you can find out about me, ok?');
 console.log('User\'s name is ' + user);
 
-
-
 //game starts
+//['No,  please try again, ' + user + '.', 'Great job' + user + 'Yay, you got it right!'],
+
+var gameArray = [['Do I like spaghetti?','Do I like rain?','Are Siberian Tigers my favorite animal?','Was I born in Lithuania?','Do I like living in Seattle?'], ['yes', 'no', 'yes', 'no', 'no']];
+
+var correctAnswer = ['Yep, I really like spaghetti!', 'True, I do not like rain.','YES! Yes they are!', 'You\'re right ' + user + '. I was born in Belgium, not Lithuania', 'you\'re right, I don\'t like living in Seattle',];
+
+var wrongAnswer = ['Not true, I do like spaghetti. Keep going.', 'What?! No!', 'Sorry, but that\'s wrong. I really like Siberian Tigers!', 'Nope, That\'s not true. I was born in Belgium.', 'No unfortunately I do not like living in Seattle.'];
+
+var userAnswerArray = [];
 
 function questionOne() {
+
 var yesOrNo = 0;
 var answer2;
+
 //asks the first question.
-do {
-  answer2 = prompt('Do I like spaghetti?' , 'type yes or no').toLowerCase();
-  if (answer2 === 'yes' || answer2 === 'no') {
-    yesOrNo = 1;
+for (var i = 0; i < 5; i++) {
+  do {
+    var userAnswer = prompt(gameArray[0][i]).toLowerCase();
+    userAnswerArray.push(userAnswer);
+    //do i need to change userAnswer to userAnswerArray[i]
+    console.log(userAnswer);
+    if (userAnswer === 'yes' || userAnswer === 'no') {
+      yesOrNo = 1;
+    }
+  } while (yesOrNo !== 1); //restricts answers to only yes or no.
+
+//it doesnt loop back around when you get it wrong
+
+  if (userAnswer === (gameArray[1][i])) {
+    alert(correctAnswer[i]);
+    userPoints++; //if answer is correct, displays message and gives point
+    console.log(''+ user + ' has ' + userPoints + ' point(s).'); //logs user points to debug in console if needed
+  } else {
+    //i temporary +1 varaible have to go here and then into the gameArray index pointer
+    //var negCounter = (i + 1);
+    alert(wrongAnswer[i]);
+  }//if answer is incorrect, displays message and moves on without point
+  console.log('' + user + '\'s answer to this question is '+ userAnswer); //logs the answer input to the question
   }
-} while (yesOrNo !== 1); //restricts answers to only yes or no.
-
-if (answer2 === 'yes' && yesOrNo === 1) {
-  alert('Yep, I really like spaghetti!');
-  userPoints++; //if answer is correct, displays message and gives point
-  console.log(''+ user + ' has ' + userPoints + ' point(s).'); //logs user points to debug in console if needed
-} if (answer2 === 'no' && yesOrNo === 1) {
-  alert('Not true, I do like spaghetti. Keep going.');
-}//if answer is incorrect, displays message and moves on without point
-
-console.log('' + user + '\'s answer to this question is '+ answer2); //logs the answer input to the question
-
 }
 questionOne();
+console.log('end of multidimensional array questions');
+
+alert('That\'s it! lets see how you did: ' + user + ', You\'ve earned ' + userPoints + ' point(s) out of 5 total points.');
+
 
 //////END OF QUESTION 1  DONE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 
 function questionTwo() {
@@ -221,7 +257,7 @@ while (numOfGuess3 < 5){
 */
 
 
-
+/*
 function questionEight() {
   var numOfGuess3 = 0;
 
@@ -250,12 +286,12 @@ questionEight();
 console.log(''+ user + ' has ' + userPoints + ' point(s).');
 
 
-alert('That\'s it! lets see how you did: ' + user + ', You\'ve earned ' + userPoints + ' point(s) out of 8 total points.');
 
 
 
 
 
+*/
 
 
 
